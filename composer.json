@@ -1,0 +1,25 @@
+{
+    "name": "xm/controller-bundle",
+    "description": "Provides a base controller class that's helpful for quickly creating CRUD & similar controllers.",
+    "type": "symfony-bundle",
+    "homepage": "https://github.com/xmmedia/XMControllerBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Darryl Hein",
+            "email": "dhein@xmmedia.com"
+        }
+    ],
+    "require": {
+        "php": "^5.6 || ^7.0",
+        "symfony/form": "~3.0",
+        "symfony/framework-bundle": "~3.0",
+        "doctrine/orm": "~2.5"
+    },
+    "autoload": {
+        "psr-4": { "XM\\ControllerBundle\\": "" },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    }
+}

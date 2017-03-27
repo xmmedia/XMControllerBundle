@@ -96,12 +96,19 @@ class Controller extends SymfonyController
      * @param Form $form The form.
      * @param object $entity The entity
      * @param string $userEntityName The name of entity to use in flash messages
+     * @param \Doctrine\Common\Persistence\ObjectManager $em
      * @return bool
      */
-    protected function processForm(Form $form, $entity, $userEntityName)
-    {
+    protected function processForm(
+        Form $form,
+        $entity,
+        $userEntityName,
+        $em = null
+    ) {
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            if (null === $em) {
+                $em = $this->getDoctrine()->getManager();
+            }
 
             $newEntity = !$em->contains($entity);
 

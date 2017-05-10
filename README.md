@@ -11,7 +11,7 @@ Open a command console, enter your project directory and execute the
 following command to download the latest stable version of this bundle:
 
 ```console
-$ php composer.phar require <package-name>
+$ php composer.phar require xm/controller-bundle
 ```
 
 This command requires [Composer](https://getcomposer.org/download/).

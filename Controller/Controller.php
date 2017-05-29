@@ -49,41 +49,31 @@ class Controller extends SymfonyController
     ) {
         $resolver = new OptionsResolver();
         $resolver->setDefaults([
-            'action' => null,
+            'action'            => null,
+            'method'            => 'POST',
+            'validation_groups' => null,
         ]);
 
-        $options = $resolver->resolve($options);
+        $newEntity = (null === $entity->getId());
 
-        if (null === $entity->getId()) {
-            if ($options['action']) {
-                $action = $options['action'];
+        if (!array_key_exists('method', $options)) {
+            $options['method'] = $newEntity ? 'POST' : 'PUT';
+        }
+
+        if (!array_key_exists('action', $options)) {
+            $route = $request->attributes->get('_route');
+
+            if ($newEntity) {
+                $options['action'] = $this->generateUrl($route);
             } else {
-                $route = $request->attributes->get('_route');
-                $action = $this->generateUrl($route);
-            }
-
-            $method = 'POST';
-
-        } else {
-            if ($options['action']) {
-                $action = $options['action'];
-            } else {
-                $route = $request->attributes->get('_route');
-                $action = $this->generateUrl(
+                $options['action'] = $this->generateUrl(
                     $route,
                     ['id' => $entity->getId()]
                 );
             }
-
-            $method = 'PUT';
         }
 
-        $formOptions = [
-            'action' => $action,
-            'method' => $method,
-        ];
-
-        return $formOptions;
+        return $resolver->resolve($options);
     }
 
     /**

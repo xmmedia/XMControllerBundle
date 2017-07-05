@@ -1,6 +1,13 @@
 # XMControllerBundle
 Provides a base for a service to help creating a filter form and record list.
 
+## Abandoned
+
+This package/bundle is no longer maintained. These 2 packages replace the functionality of this bundle:
+
+  - [XMFlashBundle](https://github.com/xmmedia/XMFlashBundle)
+  - [XMFormBundle](https://github.com/xmmedia/XMFormBundle)
+
 ## Installation
 
 ### Step 1: Download the Bundle
